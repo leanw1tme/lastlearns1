@@ -599,34 +599,23 @@ h6 {
 --------------------------------------------------------------*/
 .sidebar {
   position: fixed;
-  top: 60px;
-  left: 0;
-  bottom: 0;
-  width: 300px;
+  top: 70px;
+  left: 140px;
+  bottom: 10px;
+  width: 140px;
   z-index: 996;
   transition: all 0.3s;
-  padding: 20px;
-  overflow-y: auto;
-  scrollbar-width: thin;
-  scrollbar-color: #aab7cf transparent;
+  padding: 40px;
+      padding-top: 70px;
   box-shadow: 0px 0px 20px rgba(1, 41, 112, 0.1);
-  background-color: #fff;
+  background-color: #4169E1;
+    border-radius: 35px;
 }
 
 @media (max-width: 1199px) {
   .sidebar {
     left: -300px;
   }
-}
-
-.sidebar::-webkit-scrollbar {
-  width: 5px;
-  height: 8px;
-  background-color: #fff;
-}
-
-.sidebar::-webkit-scrollbar-thumb {
-  background-color: #aab7cf;
 }
 
 @media (min-width: 1200px) {
@@ -668,13 +657,13 @@ h6 {
 }
 
 .sidebar-nav .nav-item {
-  margin-bottom: 5px;
+  margin-bottom: 100px;
 }
 
 .sidebar-nav .nav-heading {
   font-size: 11px;
   text-transform: uppercase;
-  color: #899bbd;
+  color: #f6f9ff;
   font-weight: 600;
   margin: 10px 0 5px 15px;
 }
@@ -687,23 +676,23 @@ h6 {
   color: #4154f1;
   transition: 0.3;
   background: #f6f9ff;
-  padding: 10px 15px;
-  border-radius: 4px;
+  padding: 11px 18px;
+border-radius: 30px;
 }
 
 .sidebar-nav .nav-link i {
-  font-size: 16px;
-  margin-right: 10px;
+  font-size: 25px;
+  margin-right: 100px;
   color: #4154f1;
 }
 
 .sidebar-nav .nav-link.collapsed {
-  color: #012970;
-  background: #fff;
+  color: #f6f9ff;
+  background: #4169E1;
 }
 
 .sidebar-nav .nav-link.collapsed i {
-  color: #899bbd;
+  color: #f6f9ff;
 }
 
 .sidebar-nav .nav-link:hover {
@@ -734,8 +723,8 @@ h6 {
   display: flex;
   align-items: center;
   font-size: 14px;
-  font-weight: 600;
-  color: #012970;
+  font-weight: 00;
+  color: #f6f9ff;
   transition: 0.3;
   padding: 10px 0 10px 40px;
   transition: 0.3s;
