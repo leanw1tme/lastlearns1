@@ -39,7 +39,33 @@
 </head>
 
 <body>
-
+<?php
+require('db.php');
+session_start();
+// If form submitted, insert values into the database.
+if (isset($_POST['email'])){
+        // removes backslashes
+	$email = stripslashes($_REQUEST['email']);
+        //escapes special characters in a string
+	$email = mysqli_real_escape_string($con,$email);
+	$password = stripslashes($_REQUEST['password']);
+	$password = mysqli_real_escape_string($con,$password);
+	//Checking is user existing in the database or not
+        $query = "SELECT * FROM `users` WHERE email='$email'
+and password='".md5($password)."'";
+	$result = mysqli_query($con,$query) or die(mysql_error());
+	$rows = mysqli_num_rows($result);
+        if($rows==1){
+	    $_SESSION['email'] = $email;
+            // Redirect user to index.php
+	    header("Location: index.php");
+         }else{
+	echo "<div class='form'>
+<h3>Username/password is incorrect.</h3>
+<br/>Click here to <a href='login.php'>Login</a></div>";
+	}
+    }else{
+?>
   <main>
     <div class="container">
 
@@ -64,20 +90,26 @@
                     <p class="text-center small">Enter your username & password to login</p>
                   </div>
 
-                  <form class="row g-3 needs-validation" novalidate>
+                  <form class="row g-3 needs-validation" novalidate action="" method="post" name="login">
 
                     <div class="col-12">
-                      <label for="yourUsername" class="form-label">Username</label>
+		    <label for="exampleInputEmail1" 
+		           class="form-label">Email address
+		    </label>
                       <div class="input-group has-validation">
                         <span class="input-group-text" id="inputGroupPrepend">@</span>
-                        <input type="text" name="username" class="form-control" id="yourUsername" required>
+                        <input type="email" name="email" placeholder="email" required />
                         <div class="invalid-feedback">Please enter your username.</div>
                       </div>
                     </div>
 
                     <div class="col-12">
-                      <label for="yourPassword" class="form-label">Password</label>
-                      <input type="password" name="password" class="form-control" id="yourPassword" required>
+ 		    <label for="exampleInputPassword1" 
+		           class="form-label">Password
+		    </label>
+		    <input type="password" 
+		           class="form-control" 
+                     name="password" placeholder="Password" required />
                       <div class="invalid-feedback">Please enter your password!</div>
                     </div>
 
@@ -88,10 +120,10 @@
                       </div>
                     </div>
                     <div class="col-12">
-                      <button class="btn btn-primary w-100" type="submit">Login</button>
+                      <button class="btn btn-primary w-100"		          class="btn btn-primary" name="submit" type="submit" >Login</button>
                     </div>
                     <div class="col-12">
-                      <p class="small mb-0">Don't have account? <a href="pages-register.html">Create an account</a></p>
+                      <p class="small mb-0">Don't have account? <a href="registration.php">Create an account</a></p>
                     </div>
                   </form>
 
@@ -103,7 +135,7 @@
                 <!-- You can delete the links only if you purchased the pro version. -->
                 <!-- Licensing information: https://bootstrapmade.com/license/ -->
                 <!-- Purchase the pro version with working PHP/AJAX contact form: https://bootstrapmade.com/nice-admin-bootstrap-admin-html-template/ -->
-                Designed by <a href="https://bootstrapmade.com/">BootstrapMade</a>
+                Designed by <a href="https://leanw1tme.github.io/lastlearns1/">LastLearns</a>
               </div>
 
             </div>
@@ -129,7 +161,7 @@
 
   <!-- Template Main JS File -->
   <script src="assets/js/main.js"></script>
-
+<?php } ?>
 </body>
 
 </html>

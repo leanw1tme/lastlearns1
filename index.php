@@ -1,3 +1,8 @@
+<?php 
+  session_start();
+
+  if (isset($_SESSION['user_id']) && isset($_SESSION['user_email'])) { 
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -294,7 +299,7 @@
       </li><!-- End Contact Page Nav -->
 
       <li class="nav-item">
-        <a class="nav-link collapsed" href="pages-login.html">
+        <a class="nav-link collapsed" href="login.php">
           <i class="bi bi-box-arrow-in-right"></i>
         </a>
       </li><!-- End Login Page Nav -->
@@ -791,3 +796,8 @@
 </body>
 
 </html>
+<?php 
+}else {
+   header("Location: login.php");
+}
+ ?>

@@ -39,6 +39,30 @@
 </head>
 
 <body>
+    <?php
+require('db.php');
+// If form submitted, insert values into the database.
+if (isset($_REQUEST['email'])){
+        // removes backslashes
+	$username = stripslashes($_REQUEST['username']);
+        //escapes special characters in a string
+	$username = mysqli_real_escape_string($con,$username); 
+	$email = stripslashes($_REQUEST['email']);
+	$email = mysqli_real_escape_string($con,$email);
+	$password = stripslashes($_REQUEST['password']);
+	$password = mysqli_real_escape_string($con,$password);
+	$trn_date = date("Y-m-d H:i:s");
+        $query = "INSERT into `users` (username, password, email, trn_date)
+VALUES ('$username', '".md5($password)."', '$email', '$trn_date')";
+        $result = mysqli_query($con,$query);
+        if($result){	    header("Location: login.php");
+         }else{
+            echo "<div class='form'>
+<h3>You are registered successfully.</h3>
+<br/>Click here to <a href='login.php'>Login</a></div>";
+        }
+    }else{
+?>
 
   <main>
     <div class="container">
@@ -49,7 +73,7 @@
             <div class="col-lg-4 col-md-6 d-flex flex-column align-items-center justify-content-center">
 
               <div class="d-flex justify-content-center py-4">
-                <a href="index.html" class="logo d-flex align-items-center w-auto">
+                <a href="index.php" class="logo d-flex align-items-center w-auto">
                   <img src="assets/img/logo.png" alt="">
                   <span class="d-none d-lg-block">LastLearns</span>
                 </a>
@@ -64,31 +88,26 @@
                     <p class="text-center small">Enter your personal details to create account</p>
                   </div>
 
-                  <form class="row g-3 needs-validation" novalidate>
-                    <div class="col-12">
-                      <label for="yourName" class="form-label">Your Name</label>
-                      <input type="text" name="name" class="form-control" id="yourName" required>
-                      <div class="invalid-feedback">Please, enter your name!</div>
-                    </div>
+                  <form class="row g-3 needs-validation" novalidate name="registration" action="" method="post">
 
                     <div class="col-12">
-                      <label for="yourEmail" class="form-label">Your Email</label>
-                      <input type="email" name="email" class="form-control" id="yourEmail" required>
+                      <label for="yourUsername" class="form-label">Username</label>
+                        <input type="text" name="username" placeholder="Username" required />
                       <div class="invalid-feedback">Please enter a valid Email adddress!</div>
                     </div>
 
                     <div class="col-12">
-                      <label for="yourUsername" class="form-label">Username</label>
+                      <label for="yourEmail" class="form-label">Email</label>
                       <div class="input-group has-validation">
                         <span class="input-group-text" id="inputGroupPrepend">@</span>
-                        <input type="text" name="username" class="form-control" id="yourUsername" required>
-                        <div class="invalid-feedback">Please choose a username.</div>
+                        <input type="email" name="email" placeholder="Email" required />
+                        <div class="invalid-feedback">Please choose a email.</div>
                       </div>
                     </div>
 
                     <div class="col-12">
                       <label for="yourPassword" class="form-label">Password</label>
-                      <input type="password" name="password" class="form-control" id="yourPassword" required>
+                        <input type="password" name="password" placeholder="Password" required />
                       <div class="invalid-feedback">Please enter your password!</div>
                     </div>
 
@@ -100,10 +119,10 @@
                       </div>
                     </div>
                     <div class="col-12">
-                      <button class="btn btn-primary w-100" type="submit">Create Account</button>
+                      <button class="btn btn-primary w-100" type="submit" name="submit">Create Account</button>
                     </div>
                     <div class="col-12">
-                      <p class="small mb-0">Already have an account? <a href="pages-login.html">Log in</a></p>
+                      <p class="small mb-0">Already have an account? <a href="login.php">Log in</a></p>
                     </div>
                   </form>
 
@@ -115,7 +134,7 @@
                 <!-- You can delete the links only if you purchased the pro version. -->
                 <!-- Licensing information: https://bootstrapmade.com/license/ -->
                 <!-- Purchase the pro version with working PHP/AJAX contact form: https://bootstrapmade.com/nice-admin-bootstrap-admin-html-template/ -->
-                Designed by <a href="https://bootstrapmade.com/">BootstrapMade</a>
+                Designed by <a href="https://leanw1tme.github.io/lastlearns1/">LastLearns</a>
               </div>
 
             </div>
@@ -141,7 +160,7 @@
 
   <!-- Template Main JS File -->
   <script src="assets/js/main.js"></script>
-
+<?php } ?>
 </body>
 
 </html>
