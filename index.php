@@ -1,7 +1,8 @@
-<?php 
-  session_start();
-
-  if (isset($_SESSION['user_id']) && isset($_SESSION['user_email'])) { 
+<?php
+session_start();
+if(!isset($_SESSION["email"])){
+header("Location: login.php");
+exit(); }
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -49,7 +50,7 @@
   <header id="header" class="header fixed-top d-flex align-items-center">
 
     <div class="d-flex align-items-center justify-content-between">
-      <a href="index.html" class="logo d-flex align-items-center">
+      <a href="index.php" class="logo d-flex align-items-center">
         <img src="assets/img/logo.png" alt="">
         <span class="d-none d-lg-block">LastLearns</span>
       </a>
@@ -230,7 +231,7 @@
             </li>
 
             <li>
-              <a class="dropdown-item d-flex align-items-center" href="users-profile.html">
+              <a class="dropdown-item d-flex align-items-center" href="users-profile.php">
                 <i class="bi bi-person"></i>
                 <span>My Profile</span>
               </a>
@@ -240,7 +241,7 @@
             </li>
 
             <li>
-              <a class="dropdown-item d-flex align-items-center" href="users-profile.html">
+              <a class="dropdown-item d-flex align-items-center" href="users-profile.php">
                 <i class="bi bi-gear"></i>
                 <span>Account Settings</span>
               </a>
@@ -250,7 +251,7 @@
             </li>
 
             <li>
-              <a class="dropdown-item d-flex align-items-center" href="pages-faq.html">
+              <a class="dropdown-item d-flex align-items-center" href="pages-faq.php">
                 <i class="bi bi-question-circle"></i>
                 <span>Need Help?</span>
               </a>
@@ -260,7 +261,7 @@
             </li>
 
             <li>
-              <a class="dropdown-item d-flex align-items-center" href="#">
+              <a class="dropdown-item d-flex align-items-center" href="logout.php">
                 <i class="bi bi-box-arrow-right"></i>
                 <span>Sign Out</span>
               </a>
@@ -280,14 +281,14 @@
     <ul class="sidebar-nav" id="sidebar-nav">
 
       <li class="nav-item">
-        <a class="nav-link " href="index.html">
+        <a class="nav-link " href="index.php">
           <i class="bi bi-house-door"></i>
         </a>
       </li><!-- End Dashboard Nav -->
 
         
         <li class="nav-item">
-        <a class="nav-link collapsed" href="users-profile.html">
+        <a class="nav-link collapsed" href="users-profile.php">
           <i class="bi bi-person"></i>
         </a>
       </li><!-- End Profile Page Nav -->
@@ -299,7 +300,7 @@
       </li><!-- End Contact Page Nav -->
 
       <li class="nav-item">
-        <a class="nav-link collapsed" href="login.php">
+        <a class="nav-link collapsed" href="logout.php">
           <i class="bi bi-box-arrow-in-right"></i>
         </a>
       </li><!-- End Login Page Nav -->
@@ -336,7 +337,7 @@
                 </div>
 
                 <div class="card-body">
-                    <a href="questions.html">
+                    <a href="questions.php">
                   <h6 class="card-title"> <span>Уроков: 6</span></h6>
                     <h5 class="card-title">Русский язык</h5>
 
@@ -361,7 +362,7 @@
                 </div>
 
                 <div class="card-body">
-                    <a href="questions.html">
+                    <a href="questions.php">
                   <h6 class="card-title"> <span>Уроков: 6</span></h6>
                     <h5 class="card-title">Русский язык</h5>
 
@@ -386,7 +387,7 @@
                 </div>
 
                 <div class="card-body">
-                    <a href="questions.html">
+                    <a href="questions.php">
                   <h6 class="card-title"> <span>Уроков: 6</span></h6>
                     <h5 class="card-title">Русский язык</h5>
 
@@ -411,7 +412,7 @@
                 </div>
 
                 <div class="card-body">
-                    <a href="questions.html">
+                    <a href="questions.php">
                   <h6 class="card-title"> <span>Уроков: 6</span></h6>
                     <h5 class="card-title">Русский язык</h5>
 
@@ -436,7 +437,7 @@
                 </div>
 
                 <div class="card-body">
-                    <a href="questions.html">
+                    <a href="questions.php">
                   <h6 class="card-title"> <span>Уроков: 6</span></h6>
                     <h5 class="card-title">Русский язык</h5>
 
@@ -461,7 +462,7 @@
                 </div>
 
                 <div class="card-body">
-                    <a href="questions.html">
+                    <a href="questions.php">
                   <h6 class="card-title"> <span>Уроков: 6</span></h6>
                     <h5 class="card-title">Русский язык</h5>
 
@@ -796,8 +797,3 @@
 </body>
 
 </html>
-<?php 
-}else {
-   header("Location: login.php");
-}
- ?>
